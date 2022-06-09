@@ -5,11 +5,12 @@ ColorBox.propTypes = {
 
 };
 
-function randomColorBox() {
-    const colorList = ['green', 'yellow', 'red', 'black'];
+
+function randomColor() {
+    const ListColor = ['green', 'yellow', 'red', 'pink'];
     const colorIndex = Math.trunc(Math.random() * 5);
 
-    return colorList[colorIndex];
+    return ListColor[colorIndex];
 }
 
 function ColorBox(props) {
@@ -17,16 +18,17 @@ function ColorBox(props) {
 
 
     const [color, setColor] = useState(() => {
-        const initColor = localStorage.getItem('color_box_01') || 'blue';
-
-        return initColor
-    });
+        const initColor = localStorage.getItem('color-box') || 'blue';
+        return initColor;
+    }
+    );
 
     function handleColorClick() {
-        const newColor = randomColorBox();
+        const newColor = randomColor();
+
         setColor(newColor);
 
-        localStorage.setItem('color_box_01', newColor);
+        localStorage.setItem('color-box', newColor);
     }
 
     return (
@@ -35,7 +37,7 @@ function ColorBox(props) {
             style={{ backgroundColor: color }}
             onClick={handleColorClick}
         >
-            COLOR BOX
+            Click To Change Background
         </div>
     );
 }

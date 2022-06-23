@@ -1,20 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import TodoFeature from './features/Todo';
+import { NavLink, Route, Switch } from 'react-router-dom';
+import Header from './components/Header';
+import NotFound from './components/NotFound';
 import AlbumFeature from './features/Album';
-import ColorBox from './components/ColorBox';
-import Counter from './components/Counter';
+import CounterFeature from './features/Counter';
+import TodoFeature from './features/Todo';
 
 function App() {
-
-
   return (
     <div className="App">
-      <TodoFeature />
-      {/* <AlbumFeature /> */}
-      <ColorBox />
-      {/* <Counter /> */}
+      <Header />
+
+      <Switch>
+        <Route path="/counter" component={CounterFeature} />
+        <Route path="/todos" component={TodoFeature} />
+        <Route path="/albums" component={AlbumFeature} />
+
+        <Route component={NotFound} />
+      </Switch>
     </div>
   );
 }

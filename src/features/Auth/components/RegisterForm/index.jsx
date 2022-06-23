@@ -38,6 +38,15 @@ function RegisterForm(props) {
       .test('should has at least two words', 'Please enter at least two words.', (value) => {
         return value.split(' ').length >= 2;
       }),
+
+    email: yup.string().required('Please Enter Your Email.').email('Please Enter A Valid Email Address.'),
+
+    password: yup.string().required('Please Enter Your Password.').min(6, 'Please enter at least 6 charactor.'),
+
+    retypePassword: yup
+      .string()
+      .required('Please Retype Your Password.')
+      .oneOf([yup.ref('password')], 'Password does not match'),
   });
 
   const form = useForm({
@@ -55,7 +64,6 @@ function RegisterForm(props) {
     if (onSubmit) {
       onSubmit(values);
     }
-
     form.reset();
   };
 
